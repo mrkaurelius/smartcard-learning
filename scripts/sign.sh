@@ -1,9 +1,3 @@
 #!/bin/bash
 
-pkcs11-tool --sign \
---input-file data.txt \
---output-file data.sig \
---signature-format 'openssl' \
---module /lib/libakisp11.so \
--v \
---login
+cat data | pkcs11-tool --id $SIGN_KEY -s -p $PIN -m RSA-PKCS --module /lib/libakisp11.so > data.sig
